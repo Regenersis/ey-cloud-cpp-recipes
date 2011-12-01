@@ -1,0 +1,7 @@
+check process cpp_hydra with pidfile /data/cpp_hydra/current/log/cpp_hydra.pid
+group hydra_daemon
+  start program = "/usr/bin/env DAEMON_ENV=<%= @environment %> bundle exec /data/cpp_hydra/current/bin/cpp_hydra start"
+  stop program  = "/usr/bin/env DAEMON_ENV=<%= @environment %> bundle exec /data/cpp_hydra/current/bin/cpp_hydra stop"
+  if 5 restarts within 5 cycles then timeout
+  if cpu usage > 99% for 5 cycles then alert
+  if mem usage > 99% for 5 cycles then alert

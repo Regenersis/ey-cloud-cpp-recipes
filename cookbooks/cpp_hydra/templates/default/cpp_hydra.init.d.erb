@@ -1,0 +1,14 @@
+#!/sbin/runscript
+#
+
+start() {
+  ebegin "Starting Hydra..."
+  /usr/bin/env DAEMON_ENV=<%= @environment %> bundle exec /data/cpp_hydra/current/bin/cpp_hydra start
+  eend $?
+}
+
+stop() {
+  ebegin "Stopping Hydra..."
+  /usr/bin/env DAEMON_ENV=<%= @environment %> bundle exec /data/cpp_hydra/current/bin/cpp_hydra stop
+  eend $?
+}
