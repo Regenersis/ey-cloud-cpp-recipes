@@ -13,12 +13,13 @@ template '/etc/monit.d/cpp_hydra_daemon.monitrc' do
   variables({:environment =>  node[:environment][:framework_env]})
 end
 
-#remote_file "/etc/monit.d/hydra_daemon.monitrc" do
-#  source "hydra.monitrc.erb"
-#  owner "root"
-#  group "root"
-#  mode "0755"
-#end
+template "/etc/init.d/cpp_hydra" do
+  source "cpp_hydra.init.d.erb"
+  owner "root"
+  group "root"
+  mode "0755"
+  variables({:environment =>  node[:environment][:framework_env]})
+end
 
 execute "ensure-hydra-is-setup-with-monit" do
   command %Q{

@@ -8,7 +8,8 @@
 
 require_recipe 'rabbitmq'
 #require_recipe 'couchdb_mine'
-require_recipe 'hydra'
+require_recipe 'cpp_hydra'
+require_recipe 'shell_helpers'
 require_recipe 'cas_server'
 #require_recipe 'couchapp'
 require_recipe 'passenger_monitor_update'

@@ -12,3 +12,10 @@ stop() {
   /usr/bin/env DAEMON_ENV=<%= @environment %> bundle exec /data/cpp_hydra/current/bin/cpp_hydra stop
   eend $?
 }
+
+restart() {
+  ebegin "Restarting Hydra..."
+  stop
+  start
+  eend $?
+}
