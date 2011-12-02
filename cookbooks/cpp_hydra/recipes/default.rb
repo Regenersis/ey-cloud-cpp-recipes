@@ -27,10 +27,10 @@ execute "ensure-hydra-is-setup-with-monit" do
   }
 end
 
-service "cpp_hydra" do
-  supports :restart => true
-  action [:stop, :start]
-end
+#service "cpp_hydra" do
+#  supports :restart => true
+#  action [:stop, :start]
+#end
 
 #execute "restart-hydra" do
 #  command %Q{
