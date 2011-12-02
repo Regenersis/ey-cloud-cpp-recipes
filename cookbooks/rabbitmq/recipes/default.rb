@@ -1,7 +1,29 @@
+#download to temp, then extract then copy to /usr/sbin
+#http://www.rabbitmq.com/releases/rabbitmq-server/v2.7.0/rabbitmq-server-generic-unix-2.7.0.tar.gz
+
 if !['db_master', 'db_slave'].include?(node[:instance_role])
-package "net-misc/rabbitmq-server" do
-  action :install
+
+remote_file "#{node[:temp_folder]}/rabbitmq-server-generic-unix-2.7.0.tar.gz" do
+  source "http://www.rabbitmq.com/releases/rabbitmq-server/v2.7.0/rabbitmq-server-generic-unix-2.7.0.tar.gz"
 end
+
+script "install rabbitmq" do
+  interpreter "bash"
+  user "root"
+  cwd node[:temp_folder]
+  code <<-EOH
+    tar -zxvt #{node[:temp_folder]}/rabbitmq-server-generic-unix-2.7.0.tar.gz
+
+
+
+    cp rabbitmq_server-2.7.0/sbin/rabbitmq-server /usr/sbin/rabbitmq-server
+    cp rabbitmq_server-2.7.0/sbin/rabbitmqctl /usr/sbin/rabbitmqctl
+  EOH
+end
+
+#package "net-misc/rabbitmq-server" do
+#  action :install
+#end
 
 directory "/etc/rabbitmq" do
   action :create

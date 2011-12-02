@@ -1,0 +1,6 @@
+{"environment": { "framework_env": "blah" },
+ "owner_name": "dave",
+ "group_name": "dave",
+ "haproxy": {"password":"a_password"},
+ "db_host": "localhost",
+ "run_list": ["recipe[main]"]}

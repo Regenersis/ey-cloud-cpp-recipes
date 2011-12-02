@@ -1,0 +1,40 @@
+Generated at Fri Dec 02 15:40:17 +0000 2011
+Chef::Exceptions::ShellCommandFailed: execute[ensure-hydra-is-setup-with-monit] (cpp_hydra::default line 25) had an error: Expected process to exit with [0], but received '127'
+---- Begin output of 
+  monit reload
+   ----
+STDOUT: 
+STDERR: sh: monit: not found
+---- End output of 
+  monit reload
+   ----
+Ran 
+  monit reload
+   returned 127
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/shell_out.rb:207:in `invalid!'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/shell_out.rb:193:in `error!'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/mixin/shell_out.rb:36:in `shell_out!'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/provider/execute.rb:58:in `action_run'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/resource.rb:437:in `send'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/resource.rb:437:in `run_action'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/runner.rb:45:in `run_action'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/runner.rb:81:in `converge'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/runner.rb:81:in `each'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/runner.rb:81:in `converge'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/resource_collection.rb:94:in `execute_each_resource'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/resource_collection/stepable_iterator.rb:116:in `call'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/resource_collection/stepable_iterator.rb:116:in `call_iterator_block'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/resource_collection/stepable_iterator.rb:85:in `step'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/resource_collection/stepable_iterator.rb:104:in `iterate'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/resource_collection/stepable_iterator.rb:55:in `each_with_index'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/resource_collection.rb:92:in `execute_each_resource'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/runner.rb:76:in `converge'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/client.rb:312:in `converge'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/client.rb:160:in `run'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/application/solo.rb:192:in `run_application'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/application/solo.rb:183:in `loop'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/application/solo.rb:183:in `run_application'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/../lib/chef/application.rb:67:in `run'
+/var/lib/gems/1.8/gems/chef-0.10.4/bin/chef-solo:25
+/var/lib/gems/1.8/bin/chef-solo:19:in `load'
+/var/lib/gems/1.8/bin/chef-solo:19

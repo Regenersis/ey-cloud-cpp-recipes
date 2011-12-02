@@ -6,18 +6,18 @@
 if !['db_master', 'db_slave'].include?(node[:instance_role])
 
 template '/etc/monit.d/cpp_hydra_daemon.monitrc' do
-  owner "root"
-  group "root"
+  owner 'root'
+  group 'root'
   mode "0755"
   source "cpp_hydra.monitrc.erb"
   variables({:environment =>  node[:environment][:framework_env]})
 end
 
 template "/etc/init.d/cpp_hydra" do
-  source "cpp_hydra.init.d.erb"
   owner "root"
   group "root"
   mode "0755"
+  source "cpp_hydra.init.d.erb"
   variables({:environment =>  node[:environment][:framework_env]})
 end
 

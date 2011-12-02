@@ -1,7 +1,8 @@
 template '/usr/local/bin/db' do
-  owner "deploy"
-  group "deploy"
+  action :create_if_missing
+  owner "root"
+  group "root"
   mode "0755"
   source "db.erb"
-  variables({:password =>  node[:cron][:users][:password], :host => node[:db_host] })
+  variables({:password =>  node[:users][0][:password], :host => node[:db_host] })
 end
