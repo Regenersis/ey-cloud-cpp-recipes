@@ -13,11 +13,7 @@ script "install rabbitmq" do
   cwd node[:temp_folder]
   code <<-EOH
     tar -zxvt #{node[:temp_folder]}/rabbitmq-server-generic-unix-2.7.0.tar.gz
-
-
-
-    cp rabbitmq_server-2.7.0/sbin/rabbitmq-server /usr/sbin/rabbitmq-server
-    cp rabbitmq_server-2.7.0/sbin/rabbitmqctl /usr/sbin/rabbitmqctl
+    cp #{node[:temp_folder]}/rabbitmq_server-2.7.0 /var/lib/rabbitmq
   EOH
 end
 
