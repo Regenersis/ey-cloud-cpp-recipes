@@ -6,7 +6,7 @@
 
 #added comment to test commit
 
-#require_recipe 'rabbitmq'
+require_recipe 'rabbitmq'
 #require_recipe 'couchdb_mine'
 require_recipe 'cpp_hydra'
 require_recipe 'shell_helpers'

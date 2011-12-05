@@ -1,20 +1,10 @@
 #download to temp, then extract then copy to /usr/sbin
 #http://www.rabbitmq.com/releases/rabbitmq-server/v2.7.0/rabbitmq-server-generic-unix-2.7.0.tar.gz
 
-if !['db_master', 'db_slave'].include?(node[:instance_role])
+if !['db_master', 'db_slave'].include?(node[:instance_role]) && node[:rabbitmq].nil?
 
-  remote_file "#{node[:temp_folder]}/rabbitmq-server-generic-unix-2.7.0.tar.gz" do
+  remote_file "/tmp/rabbitmq-server-generic-unix-2.7.0.tar.gz" do
     source "http://www.rabbitmq.com/releases/rabbitmq-server/v2.7.0/rabbitmq-server-generic-unix-2.7.0.tar.gz"
-  end
-
-  script "install rabbitmq" do
-    interpreter "bash"
-    user "root"
-    cwd node[:temp_folder]
-    code <<-EOH
-      tar -zxvt #{node[:temp_folder]}/rabbitmq-server-generic-unix-2.7.0.tar.gz
-      cp #{node[:temp_folder]}/rabbitmq_server-2.7.0 /var/lib/rabbitmq
-    EOH
   end
 
   #package "net-misc/rabbitmq-server" do
@@ -29,20 +19,31 @@ if !['db_master', 'db_slave'].include?(node[:instance_role])
     recursive true
   end
 
-  directory "/var/lib/rabbitmq" do
-    action :create
-    owner "root"
-    group "root"
-    mode 0755
-    recursive true
+#  directory "/var/lib/rabbitmq" do
+#    action :create
+#    owner "root"
+#    group "root"
+#    mode 0755
+#    recursive true
+#  end
+
+  script "install rabbitmq" do
+    interpreter "bash"
+    user "root"
+    cwd node[:temp_folder]
+    code <<-EOH
+      tar xvfz /tmp/rabbitmq-server-generic-unix-2.7.0.tar.gz
+      cd /tmp/rabbitmq_server-2.7.0
+      cp -ra . /var/lib/rabbitmq
+    EOH
   end
 
-  service "rabbitmq" do
-    start_command "/var/lib/rabbitmq/sbin/rabbitmq-server -detached"
-    stop_command "/var/lib/rabbitmq/sbin/rabbitmqctl stop"
-    supports [ :restart, :status ]
-    action [ :enable, :start ]
-  end
+#  service "rabbitmq" do
+#    start_command "/var/lib/rabbitmq/sbin/rabbitmq-server -detached"
+#    stop_command "/var/lib/rabbitmq/sbin/rabbitmqctl stop"
+#    supports [ :restart, :status ]
+#    action [ :enable, :start ]
+#  end
 
   template "/etc/rabbitmq/rabbitmq.conf" do
     source "rabbitmq.config.erb"
