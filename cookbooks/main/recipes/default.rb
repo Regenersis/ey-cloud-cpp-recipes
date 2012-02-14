@@ -13,7 +13,7 @@ require_recipe 'shell_helpers'
 #require_recipe 'cas_server'
 #require_recipe 'couchapp'
 #require_recipe 'passenger_monitor_update'
-#require_recipe 'timezone'
+require_recipe 'timezone'
 #require_recipe 'corntabs'
 
 # uncomment if you want to run postgres recipe
