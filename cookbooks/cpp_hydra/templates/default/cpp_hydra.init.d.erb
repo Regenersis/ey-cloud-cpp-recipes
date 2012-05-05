@@ -2,13 +2,13 @@
 
 start() {
   ebegin "Starting Hydra..."
-  cd /data/cpp_hydra/current && /usr/bin/env DAEMON_ENV=<%= @environment %> bundle exec /data/cpp_hydra/current/bin/cpp_hydra start
+  cd /data/cpp_hydra/current && /usr/bin/env DAEMON_ENV=<%= @environment %> /data/cpp_hydra/current/bin/cpp_hydra start
   eend $?
 }
 
 stop() {
   ebegin "Stopping Hydra..."
-  cd /data/cpp_hydra/current && /usr/bin/env DAEMON_ENV=<%= @environment %> bundle exec /data/cpp_hydra/current/bin/cpp_hydra stop 
+  cd /data/cpp_hydra/current && /usr/bin/env DAEMON_ENV=<%= @environment %> /data/cpp_hydra/current/bin/cpp_hydra stop 
   eend $?
 }
 
